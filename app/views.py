@@ -34,8 +34,8 @@ def todo_get(id):
 def todo_update(id):
     new_todo = request.get_json()
     todo = TodoItem.query.filter_by(id=id, user_id=current_user.id).first()
-    todo.title, todo.completed, todo.order = new_todo['title'], 
-            new_todo['completed'], new_todo['order']
+    todo.title, todo.completed, todo.order = (new_todo['title'], 
+        new_todo['completed'], new_todo['order'])
     db.session.add(todo)
     db.session.commit()
     return jsonify(todo.serialize())
@@ -53,7 +53,7 @@ def register():
     form = RegisterForm(request.form)
     if form.validate_on_submit():
         new_user = User(username=form.username.data,
-                        password=form.password.data)
+            password=form.password.data)
         db.session.add(new_user)
         db.session.commit()
         flash("Thank you for registering.", 'success')
