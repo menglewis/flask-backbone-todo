@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-framework="backbonejs">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        {% block css %}
+            <link rel="stylesheet" href="/static/bower_components/todomvc-common/base.css">
+
+        {% endblock %}
+    </head>
+    <body>
+        {% block flashed_messages %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="flashed_messages">
+                    {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                      <a class="close" title="Close" href="#">&times;</a>
+                     {{message}}
+                    </div>
+                    {% endfor %}
+                </div><!-- end row -->
+                {% endif %}
+            {% endwith %}
+
+        {% endblock %}
+
+        {% if current_user and current_user.is_authenticated() %}
+            <div class="logout">
+                <a href="{{ url_for("logout") }}">Logout</a>
+            </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+
+
+        {% block js %}
+            <script src="/static/bower_components/jquery/jquery.js"></script>
+        {% endblock %}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".close").click(function() {
+                    $(this).parent().hide();
+                });
+            });
+        </script>
+    </body>
+</html>

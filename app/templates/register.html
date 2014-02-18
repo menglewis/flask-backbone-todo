@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/bower_components/todomvc-common/base.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Register</h1>
+    <br/>
+    <form id="registerForm" method="POST" action="{{ url_for("register") }}" role="form">
+            {{ form.hidden_tag() }}
+            <div>
+                {{form.username.label}}
+                {{form.username(placeholder="Username", class_="form-control")}}
+            </div>
+            <div>
+                {{form.password.label}}
+                {{form.password(placeholder="Password", class_="form-control")}}
+            </div>
+            <div>
+                {{form.confirm.label}}
+                {{form.confirm(placeholder="Password (again)", class_="form-control")}}
+            </div>
+            <p><input type="submit" value="Register"></p>
+    </form>
+    <p><em>Already registered?</em> Click <a href="{{ url_for("login") }}">here</a> to login.</p>
+</div>
+{% endblock %}

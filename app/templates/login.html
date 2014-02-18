@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/bower_components/todomvc-common/base.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Login</h1>
+    <br/>
+    <form id="loginForm" method="POST" action="{{ url_for("login") }}" role="form">
+            {{ form.hidden_tag() }}
+            <div>
+                {{form.username.label}}
+                {{form.username(placeholder="Username", class_="form-control")}}
+            </div>
+            <div>
+                {{form.password.label}}
+                {{form.password(placeholder="Password", class_="form-control")}}
+            </div>
+            <p><input type="submit" value="Login"></p>
+    </form>
+    <p>Click <a href="{{ url_for("register") }}">here</a> to register.</p>
+</div>
+{% endblock %}
